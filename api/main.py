@@ -2,6 +2,7 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from user.route import auth
+from ticket.route import ticket
 
 app = FastAPI(
     title="Outside API",
@@ -10,8 +11,7 @@ app = FastAPI(
 )
 
 app.include_router(auth, prefix="/api/v1")
-
-
+app.include_router(ticket, prefix="/api/v1")
 
 app.add_middleware(
     CORSMiddleware,

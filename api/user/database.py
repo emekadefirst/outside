@@ -1,19 +1,7 @@
-import os
-import asyncio
-from dotenv import load_dotenv
-from pymongo import MongoClient
-from datetime import datetime
 from bson import ObjectId
+from datetime import datetime
+from settings.database import db
 
-
-# Load environment variables
-load_dotenv()
-
-uri = os.getenv("MONGODB_URI")
-client = MongoClient(uri, tls=True, tlsAllowInvalidCertificates=True)
-
-db = client["User"]
-print("✅ Connected to MongoDB successfully!")
 collection = db["users"]
 
 
@@ -22,7 +10,6 @@ async def create_user(username, email, password):
         "username": username,
         "email": email,
         "role": "user",
-        "is_host": False,
         "password": password,
         "created_at": datetime.now(),
     }
@@ -31,16 +18,16 @@ async def create_user(username, email, password):
         response = {
             "message": "User created successfully",
             "data": {
-                "id": str(result.inserted_id),  
+                "id": str(result.inserted_id),
                 "username": username,
                 "email": email,
-                "role": "user", 
-                "is_host": False,
+                "role": "user",
             },
         }
         return response
     except Exception as e:
-        return {"error": str(e)}  
+        return {"error": str(e)}
+
 
 # if __name__ == "__main__":
 #     # print(asyncio.run(create_user("victr", "atm@s.com", "dahbsdas")))

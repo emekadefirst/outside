@@ -16,7 +16,6 @@ cloudinary.config(
 
 def cloud(file, name: str):
     try:
-
         upload_result = cloudinary.uploader.upload(file, public_id=name)
         optimize_url, _ = cloudinary_url(name, fetch_format="auto", quality="auto")
         auto_crop_url, _ = cloudinary_url(name, crop="auto", gravity="auto")
@@ -42,4 +41,4 @@ def cloud_doc(file, name: str):
         return None
 
 
-# print(cloud("C:/Users/VICTOR/Desktop/dfweb/static/dfi.png", "profile"))
+# print(cloud("image.jpg", "profile"))

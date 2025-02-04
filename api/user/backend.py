@@ -54,7 +54,6 @@ async def get_user(user_id: str):
             "username": user["username"],
             "email": user["email"],
             "role": user["role"],
-            "is_host": user["is_host"],
             "password": user["password"],
             "created_at": user["created_at"],
         }
