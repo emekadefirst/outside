@@ -32,10 +32,12 @@
                     <a href="events.html" class="text-white/70 hover:text-white transition-colors text-sm font-medium">VENUES</a>
                     <a href="events.html" class="text-white/70 hover:text-white transition-colors text-sm font-medium">HOSTS</a>
                     <a href="auth.html">
-                        <button class="bg-white text-black px-6 py-2 rounded-full text-sm font-semibold hover:scale-105 transition-transform">
+                        <button id="joinBetaBtn"
+                            class="bg-white text-black px-6 py-2 rounded-full text-sm font-semibold hover:scale-105 transition-transform">
                             Join Beta
                         </button>
                     </a>
+
                 </div>
             </div>
         </div>
@@ -175,6 +177,22 @@
             </div>
         </div>
     </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Simulating login (Replace with actual login logic)
+            const user = localStorage.getItem("username"); // Retrieve stored username
+
+            if (user) {
+                document.getElementById("joinBetaBtn").textContent = user;
+            }
+
+            // Example login function (Call this on actual login)
+            function loginUser(username) {
+                localStorage.setItem("username", username); // Store username
+                document.getElementById("joinBetaBtn").textContent = username;
+            }
+        });
+    </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.js"></script>
     <script>
