@@ -81,6 +81,5 @@ def authenticate_user(password: str, email: str):
         "username": user["username"],
         "email": user["email"],
         "role": user["role"],
-        "is_host": user["is_host"],
         "created_at": user["created_at"].isoformat(),
     }

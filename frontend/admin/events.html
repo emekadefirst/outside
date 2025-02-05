@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OUTSIDE Admin || event</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="bg-black font-['Inter'] text-white min-h-screen">
+    <div class="flex">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-zinc-900 h-screen fixed left-0 top-0">
+            <div class="p-6">
+                <a href="dashboard.html">
+                    <h1 class="text-2xl font-extrabold tracking-tighter">OUTSIDE</h1>
+                </a>
+                <p class="text-zinc-500 text-sm">Admin Dashboard</p>
+            </div>
+            <nav class="mt-6">
+                <a href="dashboard.html" class="flex items-center px-6 py-3 text-zinc-400 hover:bg-zinc-800">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    Dashboard
+                </a>
+                <a href="events.html" class="flex items-center px-6 py-3 text-white bg-purple-600">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Events
+                </a>
+                <a href="users.html" class="flex items-center px-6 py-3 text-zinc-400 hover:bg-zinc-800">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                    Users
+                </a>
+                <a href="server.html" class="flex items-center px-6 py-3 text-zinc-400 hover:bg-zinc-800">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 12h6M9 16h6M9 8h6M4 4h16a1 1 0 011 1v14a1 1 0 01-1 1H4a1 1 0 01-1-1V5a1 1 0 011-1z" />
+                    </svg>
+                    Server Log
+                </a>
+        
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="ml-64 p-8 w-full">
+            <!-- Header -->
+            <header class="flex justify-between items-center mb-8">
+                <h2 class="text-2xl font-bold">Dashboard Overview</h2>
+                <div class="flex items-center space-x-4">
+                    <button onclick="document.getElementById('eventModal').classList.remove('hidden')"
+                        class="bg-purple-600 px-4 py-2 rounded-lg hover:bg-purple-700">
+                        Add New Event
+                    </button>
+                </div>
+            </header>
+            <!-- Recent Events Table -->
+            <div class="bg-zinc-900 rounded-xl p-6">
+                <h3 class="text-xl font-bold mb-4">Recent Events</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="text-left text-zinc-400 border-b border-zinc-800">
+                                <th class="pb-3">Event Name</th>
+                                <th class="pb-3">Date</th>
+                                <th class="pb-3">Venue</th>
+                                <th class="pb-3">Tickets Sold</th>
+                                <th class="pb-3">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-zinc-800">
+                                <td class="py-4">Neon Dreams Festival</td>
+                                <td>Dec 15, 2024</td>
+                                <td>Downtown Underground</td>
+                                <td>1,234</td>
+                                <td><span
+                                        class="bg-green-500/20 text-green-500 px-2 py-1 rounded-full text-sm">Active</span>
+                                </td>
+                            </tr>
+                            <tr class="border-b border-zinc-800">
+                                <td class="py-4">Electric Soul</td>
+                                <td>Dec 21, 2024</td>
+                                <td>Skyline Rooftop</td>
+                                <td>890</td>
+                                <td><span
+                                        class="bg-green-500/20 text-green-500 px-2 py-1 rounded-full text-sm">Active</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-4">Bass Dynasty</td>
+                                <td>Dec 22, 2024</td>
+                                <td>The Warehouse</td>
+                                <td>2,300</td>
+                                <td><span
+                                        class="bg-yellow-500/20 text-yellow-500 px-2 py-1 rounded-full text-sm">Pending</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+<div id="eventModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+    <div class="bg-zinc-900 rounded-xl p-6 w-full max-w-md">
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="text-xl font-bold">Add New Event</h3>
+            <button onclick="document.getElementById('eventModal').classList.add('hidden')"
+                class="text-zinc-400 hover:text-white">
+                ✕
+            </button>
+        </div>
+
+        <form onsubmit="handleSubmit(event)" class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-zinc-400 mb-1">Event Name</label>
+                <input type="text"
+                    class="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 focus:outline-none focus:border-purple-600">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-zinc-400 mb-1">Date</label>
+                <input type="date"
+                    class="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 focus:outline-none focus:border-purple-600">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-zinc-400 mb-1">Venue</label>
+                <input type="text"
+                    class="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 focus:outline-none focus:border-purple-600">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-zinc-400 mb-1">Initial Ticket Count</label>
+                <input type="number"
+                    class="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 focus:outline-none focus:border-purple-600">
+            </div>
+
+            <div class="flex justify-end space-x-3 pt-4">
+                <button type="button" onclick="document.getElementById('eventModal').classList.add('hidden')"
+                    class="px-4 py-2 rounded-lg border border-zinc-700 hover:bg-zinc-800">
+                    Cancel
+                </button>
+                <button type="submit" class="bg-purple-600 px-4 py-2 rounded-lg hover:bg-purple-700">
+                    Add Event
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    function handleSubmit(e) {
+        e.preventDefault();
+        // Handle form submission here
+        document.getElementById('eventModal').classList.add('hidden');
+    }
+</script>
+</body>
+
+</html>

@@ -2,3 +2,8 @@ env/
 __pychache__/
 build.sh
 .env
+{
+  "username": "Onazi",
+  "email": "emekadefirst@gmail.com",
+  "password": "PasswordAdmin24"
+}
