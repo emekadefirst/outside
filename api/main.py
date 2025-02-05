@@ -10,8 +10,8 @@ app = FastAPI(
     version="0.0.1",
 )
 
-app.include_router(auth, prefix="/api/v1")
-app.include_router(ticket, prefix="/api/v1")
+app.include_router(auth, prefix="/api/v1", tags=["User"])
+app.include_router(ticket, prefix="/api/v1", tags=["Ticket"])
 
 app.add_middleware(
     CORSMiddleware,

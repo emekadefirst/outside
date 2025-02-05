@@ -5,6 +5,8 @@ from settings.database import db
 collection = db["ticket"]
 
 
+
+
 async def create_ticket(
     name, caption, date, time, banner, venue, state, quantity, user_id, unit_price
 ):

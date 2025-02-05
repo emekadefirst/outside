@@ -1,13 +1,15 @@
 from fastapi import APIRouter, Form, UploadFile, File, HTTPException, status
-from .session import create_ticket
+from .session import create_ticket, collection
 from services.cloud import cloud
 from fastapi.responses import JSONResponse
 from settings.decorators import role_required
+from bson import ObjectId
+from fastapi import HTTPException
 
 ticket = APIRouter()
 
 
-@ticket.post("/ticket/create")
+@ticket.post("/tickets/create")
 # @role_required(allowed_roles=["ADMIN", "HOST"])
 async def create_ticket_endpoint(
     name: str = Form(...),
@@ -50,15 +52,53 @@ async def create_ticket_endpoint(
         raise HTTPException(status_code=400, detail=f"Ticket creation failed: {str(e)}")
 
 
-@ticket.get("/applicants")
-async def get_all_applicants():
+@ticket.get("/tickets/")
+async def get_all_tickets():
     try:
-        applicants = collection.find()
-        applicants_list = list(applicants)
-        for applicant in applicants_list:
-            applicant["_id"] = str(applicant["_id"])
-        return {"applicants": applicants_list}
+        tickets = collection.find()
+        tickets_list = list(tickets)
+        for ticket in tickets_list:
+            ticket["_id"] = str(ticket["_id"])
+        return {"tickets": tickets_list}
     except Exception as e:
         raise HTTPException(
-            status_code=500, detail=f"Failed to fetch applicants: {str(e)}"
+            status_code=500, detail=f"Failed to fetch tickets: {str(e)}"
         )
+
+
+@ticket.get("/tickets/{id}")
+async def get_ticket_by_id(id: str):
+    try:
+        ticket = collection.find_one({"_id": ObjectId(id)})  # Convert string ID to ObjectId
+        if ticket:
+            ticket["_id"] = str(ticket["_id"])  # Convert ObjectId back to string for response
+            return {"ticket": ticket}
+        else:
+            raise HTTPException(status_code=404, detail="Ticket not found")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to fetch ticket: {str(e)}")
+
+@ticket.delete("/tickets/{id}")
+async def delete_ticket(id: str):
+    try:
+        result = collection.delete_one({"_id": ObjectId(id)})
+        
+        if result.deleted_count == 0:
+            raise HTTPException(status_code=404, detail="Ticket not found")
+
+        return {"message": "Ticket deleted successfully"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to delete ticket: {str(e)}")
+
+
+@ticket.patch("/tickets/{id}")
+async def update_ticket(id: str, updated_data: dict):
+    try:
+        result = collection.update_one({"_id": ObjectId(id)}, {"$set": updated_data})
+        
+        if result.matched_count == 0:
+            raise HTTPException(status_code=404, detail="Ticket not found")
+
+        return {"message": "Ticket updated successfully"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to update ticket: {str(e)}")
