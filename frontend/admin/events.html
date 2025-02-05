@@ -60,7 +60,7 @@
                 <div class="flex items-center space-x-4">
                     <button onclick="document.getElementById('eventModal').classList.remove('hidden')"
                         class="bg-purple-600 px-4 py-2 rounded-lg hover:bg-purple-700">
-                        Add New Event
+                        Create Ticket
                     </button>
                 </div>
             </header>
@@ -71,41 +71,15 @@
                     <table class="w-full">
                         <thead>
                             <tr class="text-left text-zinc-400 border-b border-zinc-800">
+                                <th class="pb-3">Event ID</th>
                                 <th class="pb-3">Event Name</th>
                                 <th class="pb-3">Date</th>
                                 <th class="pb-3">Venue</th>
-                                <th class="pb-3">Tickets Sold</th>
-                                <th class="pb-3">Status</th>
+                                <th class="pb-3">Date created</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr class="border-b border-zinc-800">
-                                <td class="py-4">Neon Dreams Festival</td>
-                                <td>Dec 15, 2024</td>
-                                <td>Downtown Underground</td>
-                                <td>1,234</td>
-                                <td><span
-                                        class="bg-green-500/20 text-green-500 px-2 py-1 rounded-full text-sm">Active</span>
-                                </td>
-                            </tr>
-                            <tr class="border-b border-zinc-800">
-                                <td class="py-4">Electric Soul</td>
-                                <td>Dec 21, 2024</td>
-                                <td>Skyline Rooftop</td>
-                                <td>890</td>
-                                <td><span
-                                        class="bg-green-500/20 text-green-500 px-2 py-1 rounded-full text-sm">Active</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="py-4">Bass Dynasty</td>
-                                <td>Dec 22, 2024</td>
-                                <td>The Warehouse</td>
-                                <td>2,300</td>
-                                <td><span
-                                        class="bg-yellow-500/20 text-yellow-500 px-2 py-1 rounded-full text-sm">Pending</span>
-                                </td>
-                            </tr>
+                        <tbody id="tickets-body">
+ 
                         </tbody>
                     </table>
                 </div>
@@ -166,6 +140,7 @@
         document.getElementById('eventModal').classList.add('hidden');
     }
 </script>
+<script type="module" src="../assets/js/adminticket.js"></script>
 </body>
 
 </html>

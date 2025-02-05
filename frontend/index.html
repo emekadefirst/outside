@@ -1,43 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OUTSIDE</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <style>
         .swiper {
             width: 100%;
             height: 100vh;
         }
+
         .gradient-overlay {
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.9));
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.9));
         }
+
         .noise-bg {
             background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAAElBMVEUAAAAAAAAAAAAAAAAAAAAAAADgKxmiAAAABnRSTlMDAwMDAwPduPR+AAAASElEQVQ4y2NgQAX8/PwMDAz8/PwMDAz4+fkZGBj4+fkZGBj4+fkZGBj4+fkZGBj4+fkZGBj4+fkZGBj4+fkZGBj4+fkZGLD5BAAO1hRXvF6K3AAAAABJRU5ErkJggg==');
             opacity: 0.05;
         }
     </style>
 </head>
+
 <body class="bg-black font-['Inter'] overflow-x-hidden">
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 bg-gradient-to-b from-black to-transparent">
         <div class="container mx-auto px-6 py-6">
             <div class="flex items-center justify-between">
                 <div class="text-white text-3xl font-extrabold tracking-tighter">OUTSIDE</div>
+
+                <!-- Mobile menu button -->
+                <button id="menuBtn" class="md:hidden text-white">
+                    MENU
+                </button>
+
+                <!-- Desktop menu -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="events.html" class="text-white/70 hover:text-white transition-colors text-sm font-medium">DISCOVER</a>
-                    <a href="events.html" class="text-white/70 hover:text-white transition-colors text-sm font-medium">VENUES</a>
-                    <a href="events.html" class="text-white/70 hover:text-white transition-colors text-sm font-medium">HOSTS</a>
+                    <a href="events.html"
+                        class="text-white/70 hover:text-white transition-colors text-sm font-medium">DISCOVER</a>
+                    <a href="events.html"
+                        class="text-white/70 hover:text-white transition-colors text-sm font-medium">VENUES</a>
+                    <a href="events.html"
+                        class="text-white/70 hover:text-white transition-colors text-sm font-medium">HOSTS</a>
                     <a href="auth.html">
                         <button id="joinBetaBtn"
                             class="bg-white text-black px-6 py-2 rounded-full text-sm font-semibold hover:scale-105 transition-transform">
                             Join Beta
                         </button>
                     </a>
+                </div>
 
+                <!-- Mobile menu -->
+                <div id="mobileMenu" class="hidden fixed inset-0 bg-black z-50">
+                    <div class="flex flex-col h-full p-6">
+                        <div class="flex justify-between items-center mb-8">
+                            <div class="text-white text-3xl font-extrabold tracking-tighter">OUTSIDE</div>
+                            <button id="closeMenu" class="text-white">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="flex flex-col space-y-6">
+                            <a href="events.html" class="text-white text-2xl font-medium">DISCOVER</a>
+                            <a href="events.html" class="text-white text-2xl font-medium">VENUES</a>
+                            <a href="events.html" class="text-white text-2xl font-medium">HOSTS</a>
+                            <a href="auth.html">
+                                <button class="w-full bg-white text-black px-6 py-3 rounded-full text-lg font-semibold">
+                                    Join Beta
+                                </button>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -49,24 +88,27 @@
             <div class="swiper-slide relative">
                 <div class="absolute inset-0 gradient-overlay z-10"></div>
                 <div class="absolute inset-0 noise-bg z-20"></div>
-                <img src="assets/img/image.jpg" alt="Party scene" class="absolute inset-0 w-full h-full object-cover"/>
+                <img src="assets/img/image.jpg" alt="Party scene" class="absolute inset-0 w-full h-full object-cover" />
                 <div class="relative z-30 h-full flex flex-col justify-end pb-32 px-6 md:px-20">
                     <div class="max-w-4xl">
                         <h1 class="text-5xl md:text-8xl font-extrabold text-white tracking-tight leading-none mb-6">
-                            Your Night.<br/>Your Vibe.
+                            Your Night.<br />Your Vibe.
                         </h1>
                         <p class="text-white/70 text-lg md:text-xl mb-8 max-w-2xl">
-                            Join the revolution of nightlife. Exclusive access to the hottest venues, 
+                            Join the revolution of nightlife. Exclusive access to the hottest venues,
                             real-time crowd updates, and instant ticket securing.
                         </p>
                         <div class="flex flex-col md:flex-row gap-4">
-                            <button class="bg-white text-black px-8 py-4 rounded-full text-lg font-semibold hover:scale-105 transition-transform inline-flex items-center justify-center">
+                            <button
+                                class="bg-white text-black px-8 py-4 rounded-full text-lg font-semibold hover:scale-105 transition-transform inline-flex items-center justify-center">
                                 Get Early Access
                                 <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                 </svg>
                             </button>
-                            <button class="bg-white/10 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/20 transition-colors">
+                            <button
+                                class="bg-white/10 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/20 transition-colors">
                                 Watch Demo
                             </button>
                         </div>
@@ -75,6 +117,8 @@
             </div>
         </div>
     </div>
+
+
 
     <!-- Trending Events -->
     <section class="py-20 bg-black relative">
@@ -87,31 +131,11 @@
                 <!-- Event Card 1 -->
                 <div class="group relative rounded-xl overflow-hidden hover:scale-[1.02] transition-transform">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent z-10"></div>
-                    <img src="assets/img/lungu boy.jpg" alt="Event" class="w-full h-[400px] object-cover"/>
+                    <img src="assets/img/lungu boy.jpg" alt="Event" class="w-full h-[400px] object-cover" />
                     <div class="absolute bottom-0 left-0 right-0 p-6 z-20">
                         <span class="text-white/70 text-sm mb-2 block">SAT • DEC 15 • 10PM</span>
                         <h3 class="text-white text-xl font-bold mb-2">Neon Dreams Festival</h3>
                         <p class="text-white/70 text-sm">Downtown Underground • 1.2k going</p>
-                    </div>
-                </div>
-                <!-- Event Card 2 -->
-                <div class="group relative rounded-xl overflow-hidden hover:scale-[1.02] transition-transform">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent z-10"></div>
-                    <img src="assets/img/wiztour.jfif" alt="Event" class="w-full h-[400px] object-cover"/>
-                    <div class="absolute bottom-0 left-0 right-0 p-6 z-20">
-                        <span class="text-white/70 text-sm mb-2 block">FRI • DEC 21 • 11PM</span>
-                        <h3 class="text-white text-xl font-bold mb-2">Electric Soul</h3>
-                        <p class="text-white/70 text-sm">Skyline Rooftop • 890 going</p>
-                    </div>
-                </div>
-                <!-- Event Card 3 -->
-                <div class="group relative rounded-xl overflow-hidden hover:scale-[1.02] transition-transform">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent z-10"></div>
-                    <img src="assets/img/bnxn.webp" alt="Event" class="w-full h-[400px] object-cover"/>
-                    <div class="absolute bottom-0 left-0 right-0 p-6 z-20">
-                        <span class="text-white/70 text-sm mb-2 block">SAT • DEC 22 • 9PM</span>
-                        <h3 class="text-white text-xl font-bold mb-2">Bass Dynasty</h3>
-                        <p class="text-white/70 text-sm">The Warehouse • 2.3k going</p>
                     </div>
                 </div>
             </div>
@@ -126,11 +150,14 @@
             <div class="max-w-xl mx-auto text-center">
                 <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Join the Movement</h2>
                 <p class="text-white/70 text-lg mb-8">
-                    Be the first to experience the future of nightlife. Early access members get exclusive perks and VIP treatment.
+                    Be the first to experience the future of nightlife. Early access members get exclusive perks and VIP
+                    treatment.
                 </p>
                 <form class="space-y-4">
-                    <input type="email" placeholder="Enter your email" class="w-full px-6 py-4 rounded-full bg-white/10 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/25">
-                    <button type="submit" class="w-full bg-white text-black px-6 py-4 rounded-full font-semibold hover:scale-105 transition-transform">
+                    <input type="email" placeholder="Enter your email"
+                        class="w-full px-6 py-4 rounded-full bg-white/10 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/25">
+                    <button type="submit"
+                        class="w-full bg-white text-black px-6 py-4 rounded-full font-semibold hover:scale-105 transition-transform">
                         Get Priority Access
                     </button>
                 </form>
@@ -178,24 +205,26 @@
         </div>
     </footer>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Simulating login (Replace with actual login logic)
-            const user = localStorage.getItem("username"); // Retrieve stored username
+        // Mobile menu functionality
+        document.getElementById('menuBtn').addEventListener('click', () => {
+            document.getElementById('mobileMenu').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
 
+        document.getElementById('closeMenu').addEventListener('click', () => {
+            document.getElementById('mobileMenu').classList.add('hidden');
+            document.body.style.overflow = '';
+        });
+
+        // User login check
+        document.addEventListener("DOMContentLoaded", function () {
+            const user = localStorage.getItem("username");
             if (user) {
                 document.getElementById("joinBetaBtn").textContent = user;
             }
-
-            // Example login function (Call this on actual login)
-            function loginUser(username) {
-                localStorage.setItem("username", username); // Store username
-                document.getElementById("joinBetaBtn").textContent = username;
-            }
         });
-    </script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.js"></script>
-    <script>
+        // Swiper initialization
         new Swiper('.swiper', {
             effect: 'fade',
             autoplay: {
@@ -206,5 +235,8 @@
             speed: 1500,
         });
     </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.js"></script>
 </body>
+
 </html>
