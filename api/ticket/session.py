@@ -42,6 +42,16 @@ async def create_ticket(
         return response
     except Exception as e:
         return {"error": str(e)}
+    
+    
+async def get_ticket(id: str):
+    try:
+        ticket = collection.find_one({"_id": ObjectId(id)})  
+        if ticket:
+            ticket["_id"] = str(ticket["_id"])  
+            return {"ticket": ticket}
+    except Exception as e:
+        return e
 
 
 # if __name__ == "__main__":

@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from user.route import auth
 from ticket.route import ticket
+from payment.route import payment
 
 app = FastAPI(
     title="Outside API",
@@ -12,6 +13,7 @@ app = FastAPI(
 
 app.include_router(auth, prefix="/api/v1", tags=["User"])
 app.include_router(ticket, prefix="/api/v1", tags=["Ticket"])
+app.include_router(payment, prefix="/api/v1", tags=["Payment"])
 
 app.add_middleware(
     CORSMiddleware,
