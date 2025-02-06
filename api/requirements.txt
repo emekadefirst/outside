@@ -35,6 +35,7 @@ passlib==1.7.4
 pillow==11.1.0
 pluggy==1.5.0
 propcache==0.2.1
+psycopg2==2.9.10
 pycryptodome==3.19.1
 pydantic==1.10.21
 PyJWT==2.10.1

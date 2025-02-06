@@ -9,7 +9,7 @@ secret_key = os.getenv("PAYSTACK_KEY")
 
 async def initialize_transaction(email, amount):
     url = "https://api.paystack.co/transaction/initialize"
-    data = {"email": email, "amount": amount}
+    data = {"email": email, "amount": amount * 100}
     headers = {
         "Authorization": f"Bearer {secret_key}",
         "Content-Type": "application/json",

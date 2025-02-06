@@ -78,5 +78,5 @@ async function fetchRecentEvent() {
 }
 
 // Call the function on page load
-window.onload = fetchRecentEvent;
+window.onload = fetchRecentEvent();
 

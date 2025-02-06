@@ -35,4 +35,4 @@ async function fetchUsers() {
 }
 
 // Call the function to load users when the page loads
-window.onload = fetchUsers;
+window.onload = fetchUsers();

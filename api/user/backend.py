@@ -1,5 +1,6 @@
 import os
 import jwt
+import asyncio
 from dotenv import load_dotenv
 from typing import Annotated
 from bson import ObjectId
@@ -43,7 +44,7 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None):
     return encoded_jwt
 
 
-async def get_user(user_id: str):
+def get_user(user_id: str):
     try:
         user = collection.find_one({"_id": ObjectId(user_id)})
         if not user:
@@ -83,3 +84,5 @@ def authenticate_user(password: str, email: str):
         "role": user["role"],
         "created_at": user["created_at"].isoformat(),
     }
+
+
