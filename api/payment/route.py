@@ -1,4 +1,5 @@
 import uuid
+import traceback
 from fastapi import APIRouter, HTTPException
 from .schema import Payment
 from user.backend import get_user  
@@ -14,24 +15,33 @@ async def create_payment_endpoint(data: Payment):
         user = get_user(data.user_id) 
         ticket = get_ticket(data.ticket_id)  
 
-        if user and ticket:
-            email = user["data"]["email"]
-            amount = ticket["ticket"]["unit_price"]
-            response = await initialize_transaction(
-                email, amount
-            )  
-            create_payment(
-                user=user["data"]["username"],
-                amount=amount,
-                host=ticket["ticket"]["user_id"],
-                reference_id=response["reference"],
-                ticket_name=ticket["ticket"]["name"],
-            )
+        if not user or "data" not in user or "email" not in user["data"]:
+            raise HTTPException(status_code=400, detail="Invalid user data.")
 
-            return {"authorization_url": response["authorization_url"]}
-        raise HTTPException(status_code=400, detail="User or Ticket not found.")
+        if not ticket or "ticket" not in ticket or "unit_price" not in ticket["ticket"]:
+            raise HTTPException(status_code=400, detail="Invalid ticket data.")
+
+        email = user["data"]["email"]
+        amount = ticket["ticket"]["unit_price"]
+
+        response = await initialize_transaction(email, amount)
+        if not response or "authorization_url" not in response or "reference" not in response:
+            raise HTTPException(status_code=500, detail="Payment initialization failed.")
+
+        create_payment(
+            user=user["data"]["username"],
+            amount=amount,
+            host=ticket["ticket"]["user_id"],
+            reference_id=response["reference"],
+            ticket_name=ticket["ticket"]["name"],
+        )
+
+        return {"authorization_url": response["authorization_url"]}
+    
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error: {str(e)}")
+        error_message = f"Unexpected error: {str(e)}\n{traceback.format_exc()}"
+        print(error_message)  # Logs full error traceback
+        raise HTTPException(status_code=500, detail="An unexpected error occurred. Please try again.")
 
 
 @payment.get("/payments")
