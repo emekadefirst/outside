@@ -12,7 +12,7 @@ load_dotenv()
 
 
 DATABASE_URL = os.getenv("POSTGRESQL")
-engine = create_engine(DATABASE_URL, echo=False)
+engine = create_engine(DATABASE_URL, echo=True)
 
 
 def create_db_and_tables():
