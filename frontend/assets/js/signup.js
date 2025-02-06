@@ -6,6 +6,12 @@ document.getElementById("signup-form").addEventListener("submit", async (e) => {
   const email = document.getElementById("login-email").value;
   const username = document.getElementById("login-username").value;
   const password = document.getElementById("login-password").value;
+  const signupBtn = document.getElementById("signupBtn");
+
+  // Add a spinner and change button text
+  signupBtn.innerHTML =
+    'Creating account... <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
+  signupBtn.disabled = true;
 
   try {
     const response = await fetch(`${api}/api/v1user/auth/signup`, {

@@ -1,14 +1,19 @@
-import { api } from "./api.js";
+import { api } from './api.js'
 
 document.getElementById("login-form").addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
+  const loginBtn = document.getElementById("loginBtn");
+
+  // Add a spinner and change button text
+  loginBtn.innerHTML =
+    'Logging in... <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
+  loginBtn.disabled = true;
 
   try {
     const response = await fetch(`${api}/api/v1user/auth/login`, {
-      // Fixed URL
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -20,10 +25,8 @@ document.getElementById("login-form").addEventListener("submit", async (e) => {
     console.log(data);
 
     if (response.ok) {
-      // Store access token
-      localStorage.setItem("access_token", data.access_token); // Fixed key name
-
-      // Store user data properly
+      // Store access token and user data
+      localStorage.setItem("access_token", data.access_token);
       localStorage.setItem("user_id", data.data.id);
       localStorage.setItem("username", data.data.username);
       localStorage.setItem("email", data.data.email);
@@ -31,7 +34,7 @@ document.getElementById("login-form").addEventListener("submit", async (e) => {
 
       // Redirect based on role
       if (data.data.role === "admin") {
-        window.location.href = "/admin/dashboard.html";
+        window.location.href = "./dashboard.html";
       } else {
         window.location.href = "index.html";
       }
@@ -41,5 +44,9 @@ document.getElementById("login-form").addEventListener("submit", async (e) => {
   } catch (error) {
     console.error("Error:", error);
     alert("An error occurred during login.");
+  } finally {
+    // Revert button text and enable it again
+    loginBtn.innerHTML = "Login";
+    loginBtn.disabled = false;
   }
 });

@@ -1,6 +1,13 @@
 import { api } from "./api.js";
 
 async function fetchTickets() {
+  // Show loading state and hide ticket content
+  const loadingDiv = document.getElementById("loading-div");
+  const ticketDiv = document.getElementById("ticket-div");
+
+  loadingDiv.style.display = "flex"; // Show loading state
+  ticketDiv.style.display = "none"; // Hide ticket content
+
   try {
     const response = await fetch(`${api}/api/v1/tickets/`);
     const data = await response.json();
@@ -33,9 +40,8 @@ async function fetchTickets() {
                       <h3 class="text-white text-xl font-bold mb-2">${ticket.name}</h3>
                       <p class="text-white/70 mb-4">${ticket.venue}</p>
                       <div class="flex items-center gap-4">
-                      
-                          <span class="text-white/50 text-sm">Available: ${ticket.quantity}</span>
-                          <span class="text-white/50 text-sm">₦${ticket.unit_price}</span>
+                       <span class="text-white/50 text-sm">Available: ${ticket.quantity}</span>
+                       <span class="text-white/50 text-sm">₦${ticket.unit_price}</span>
                       </div>
                   </div>
                   <div class="flex gap-3 w-full md:w-auto">
@@ -52,11 +58,16 @@ async function fetchTickets() {
 
         ticketBody.appendChild(ticketDiv);
       });
+
+      // Hide loading and show ticket content once data is available
+      loadingDiv.style.display = "none"; // Hide loading state
+      ticketDiv.style.display = "grid"; // Show ticket content
     } else {
       console.error("No tickets found in the response");
     }
   } catch (error) {
     console.error("Error fetching tickets:", error);
+    // Handle error (optional)
   }
 }
 

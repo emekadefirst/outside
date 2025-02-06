@@ -1,9 +1,13 @@
+window.onload = function() {
+    // Retrieve session data
+    const accessCode = localStorage.getItem('access_token');
+    const username = localStorage.getItem('username');
+    const email = localStorage.getItem('email');
+    const role = localStorage.getItem('role');
+    const userId = localStorage.getItem('user_id');
 
-document.addEventListener("DOMContentLoaded", function () {
-  const token = localStorage.getItem("access_token");
-  const username = localStorage.getItem("username");
-
-  if (!token || !username) {
-    window.location.href = "/";
-  }
-});
+    
+    if (!accessCode || !username || !email || !role || !userId || role !== 'admin') {
+        window.location.href = "./index.html";
+    }
+}
